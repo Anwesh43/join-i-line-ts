@@ -209,3 +209,25 @@ class JoinILine {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    jil : JoinILine = new JoinILine()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.jil.draw(context)
+    } 
+
+    handleTap(cb : Function) {
+        this.jil.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.jil.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
