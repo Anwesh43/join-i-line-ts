@@ -1,5 +1,3 @@
-import { timeStamp } from "console"
-
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
 const parts : number = 4 
@@ -24,7 +22,7 @@ class ScaleUtil {
     }
 
     static divideScale(scale : number, i : number, n : number) : number {
-        return Math.min(1 / n, ScaleUtil.divideScale(scale, i, n)) * n 
+        return Math.min(1 / n, ScaleUtil.maxScale(scale, i, n)) * n 
     }
 
     static sinify(scale : number)  : number {
