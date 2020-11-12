@@ -1,3 +1,5 @@
+import { timeStamp } from "console"
+
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
 const parts : number = 4 
@@ -119,6 +121,26 @@ class State {
         if (this.dir == 0) {
             this.dir = 1 - 2 * this.prevScale 
             cb()
+        }
+    }
+}
+
+class Animator {
+
+    animated : boolean = false 
+    interval : number 
+
+    start(cb : Function) {
+        if (!this.animated) {
+            this.animated = true 
+            this.interval = setInterval(cb, delay)
+        }
+    }
+
+    stop() {
+        if (this.animated) {
+            this.animated = false 
+            clearInterval(this.interval)
         }
     }
 }
